@@ -1,5 +1,5 @@
 <template>
-  <td class="cell">{{mark}}</td>
+  <td class="cell" @click="strike">{{mark}}</td>
 </template>
 
 <script>
@@ -12,7 +12,20 @@
             //holds either X or O to be displayed in the td
             mark: ''
 
+          },
+        methods: {
+          strike(){
+            if(!this.frozen){
+              // gets either X or O from the Grid component
+              this.mark = this.$parent.activePlayer
+
+              this.frozen = true
+
+              // fires an event to notify the Grid component that a mark is placed
+              Event.$emit('strike', this.name)
+            }
           }
+        }
         }
     }
 </script>
