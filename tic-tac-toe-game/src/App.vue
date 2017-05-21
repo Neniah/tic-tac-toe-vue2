@@ -11,6 +11,7 @@
 import Board from './components/Board.vue'
 
 export default {
+  components: { Board },
   name: 'app',
   data () {
     return {

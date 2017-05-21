@@ -6,10 +6,13 @@
     export default {
         props: ['name'],
         data () {
-          // enables the player to place a mark
-          frozen: false,
-          //holds either X or O to be displayed in the td
-          mark: ''
+          return {
+            // enables the player to place a mark
+            frozen: false,
+            //holds either X or O to be displayed in the td
+            mark: ''
+
+          }
         }
     }
 </script>
