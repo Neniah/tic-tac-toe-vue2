@@ -1,25 +1,25 @@
 <template>
-  <div id="app">
-    <div id="details">
-      <h1>Tic Tac Toe</h1>
+    <div id="app">
+
     </div>
-    <board></board>
-  </div>
 </template>
 
 <script>
+import Board from './components/Board.vue'
+
 export default {
   name: 'app',
   data () {
     return {
 
+      }
     }
   }
-}
+
 </script>
 
 <style>
-body{
+body {
   background-color: #fff;
   color: #fff;
   font-family: 'Dosis', Helvetica, sans-serif;
@@ -28,55 +28,39 @@ body{
   text-align: center;
   margin: 0px;
 }
+
 #app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin: 0px;
+  margin: 0 auto;
+  max-width: 270px;
+  color: #34495e;
 }
 
 h1 {
-  text-transform: uppercase;
   font-weight: bold;
+  text-transform: uppercase;
   font-size: 3em;
 }
 
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
-
-a {
-  color: #42b983;
-}
-
-.restart{
+.restart {
   background-color: #e74c3c;
   color: #fff;
   border: 0px;
   border-bottom-left-radius: 10px;
   border-bottom-right-radius: 10px;
   font-family: 'Dosis', Helvetica, sans-serif;
-  font-size; 1.4em;
+  font-size: 1.4em;
   font-weight: bold;
   margin: 0px;
   padding: 15px;
   width: 100%;
 }
 
-.restart:hover{
+.restart:hover {
   background-color: #c0392b;
   cursor: pointer;
 }
 
-.scoreBoard{
+.scoreBoard {
   display: flex;
   flex-direction: row;
   justify-content: space-around;
@@ -89,7 +73,7 @@ a {
   overflow-x: none;
 }
 
-.scoreBoard h2{
+.scoreBoard h2 {
   margin: 0px;
 }
 
@@ -97,6 +81,6 @@ a {
   float: right;
   font-size: 1.5em;
   font-weight: bold;
-  margin-left; 20px;
+  margin-left: 20px;
 }
 </style>
