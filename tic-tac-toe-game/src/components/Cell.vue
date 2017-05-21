@@ -12,7 +12,8 @@
             //holds either X or O to be displayed in the td
             mark: ''
 
-          },
+          }
+        },
         methods: {
           strike(){
             if(!this.frozen){
@@ -25,7 +26,6 @@
               Event.$emit('strike', this.name)
             }
           }
-        }
         }
     }
 </script>
