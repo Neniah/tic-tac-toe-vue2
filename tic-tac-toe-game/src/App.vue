@@ -1,29 +1,40 @@
 <template>
+  <div class="">
+    <div class="scoreBoard">
+      <span>O has {{ wins.O }} wins</span>
+      <h2>Score Board</h2>
+      <span>X has {{ wins.X }} wins</span>
+    </div>
     <div id="app">
       <div id="details">
         <h1>Tic Tac Toe</h1>
       </div>
       <board></board>
     </div>
+  </div>
 </template>
 
 <script>
 import Board from './components/Board.vue'
-
 export default {
   components: { Board },
   name: 'app',
   data () {
     return {
-        matches: 0,
-        wins: {
-          O: 0,
-          X: 0
-        }
+      matches: 0,
+      wins: {
+        O: 0,
+        X: 0
       }
     }
-  }
+  },
+  methods: {
 
+  },
+  created () {
+    Event.$on('win', winner => this.wins[winner]++)
+  }
+}
 </script>
 
 <style>
