@@ -1,22 +1,26 @@
 <template>
-  <table class="grid">
-    <tr>
-      <cell name="1"></cell>
-      <cell name="2"></cell>
-      <cell name="3"></cell>
-    </tr>
-    <tr>
-      <cell name="4"></cell>
-      <cell name="5"></cell>
-      <cell name="6"></cell>
-    </tr>
-    <tr>
-      <cell name="7"></cell>
-      <cell name="8"></cell>
-      <cell name="9"></cell>
-    </tr>
-
-  </table>
+  <div class="">
+    <div class="gameStatus" :class="gameStatusColor">
+      {{gameStatusMessage}}
+    </div>
+    <table class="grid">
+      <tr>
+        <cell name="1"></cell>
+        <cell name="2"></cell>
+        <cell name="3"></cell>
+      </tr>
+      <tr>
+        <cell name="4"></cell>
+        <cell name="5"></cell>
+        <cell name="6"></cell>
+      </tr>
+      <tr>
+        <cell name="7"></cell>
+        <cell name="8"></cell>
+        <cell name="9"></cell>
+      </tr>
+    </table>
+  </div>
 </template>
 
 <script>
@@ -69,6 +73,7 @@
             changePlayer(){
               this.activePlayer = this.nonActivePlayer
             },
+
             // returns the game status to the gameStatus property
             changeGameStatus(){
               if(this.checkForWin()){
@@ -81,6 +86,50 @@
               // sets the status to turn
               return 'turn'
             },
+
+            // checks for possible win conditions from the data
+            checkForWin(){
+              for(let i = 0; i < this.winConditions.length; i++){
+                // gets a single condition wc from the whole array
+                let wc = this.winConditions[i]
+                let cells = this.cells
+
+                // compare 3 cell values based on the cells in the condition
+                if(this.areEqual(cell[wc[0]], cells[wc[1]], cells[wc[2]])){
+                  return true
+                }
+              }
+              return false
+            },
+
+            // helper function for comparing cell values
+            areEqual(){
+              var len = arguments.length;
+
+              // loops through each value and compares them with an empty sting and
+              // for inequality
+              for (var i = 0; i < len; i++){
+                if(arguments[i] === '' || arguments[i] !== arguments[i-1])
+                  return false;
+              }
+              return true;
+            },
+
+            // gameIsWon
+            gameIsWon(){
+              // fires win event for the App component to change the score
+              Event.$emit('win', this.activePlayer)
+
+              // sets the game status message
+              this.gameStatusMessage = `${this.activePlayer} Wins !`
+
+              // fires an event for the Cell to freeze
+              Event.$emit('freeze')
+
+              // sets the status to win
+              return 'win'
+            }
+
         },
 
         watch: {
