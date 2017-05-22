@@ -83,6 +83,28 @@
             },
         },
 
+        watch: {
+          // watches for change in the value of gameStatus and changes the status
+          // message and color accordingly
+          gameStatus(){
+            if(this.gameStatus == 'win'){
+
+              this.gameStatusColor = 'statusWin'
+              this.gameStatusMessage = `${this.activePlayer} Wins !`
+
+              return
+            } else if (this.gameStatus === 'draw'){
+              this.gameStatusColor = 'statusDraw'
+
+              this.gameStatusMessage = 'Draw !'
+
+              return
+            }
+
+            this.gameStatusMessage = `${this.activePlayer}'s turn`
+          }
+        },
+
         created(){
           // listens for a strike make by the user on cell
           // it is called by the Cell component
